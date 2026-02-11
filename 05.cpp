@@ -1,74 +1,59 @@
-//missing element
-//brute force
-//this is not the batter solution
-/*
+//insert at start with constructor
 #include<iostream>
 using namespace std;
-int main()
-{
-    int arr[]={1,2,4,5};
-
-    for(int i=1;i<=5;i++){
-            int cnt=0;
-        for(int j=0;j<4;j++){
-            if(arr[j]==i){
-                cnt=1;
-                break;
-            }
-        }
-    if(cnt==0){
-        cout<<i;
-    }
-    }
-}
-*/
-
-//optimised solution
-//not optimal solution
-/*
-#include<iostream>
-using namespace std;
-int main()
-{
-    int arr[]={1,2,3,5};
-
-    int hash[5]={0};//hash array
-
-    //
-
-    for(int i=0;i<4;i++){
-        hash[arr[i]]++;
-    }
-
-    //checking the frequently
-    for(int i=1;i<=5;i++)
+class node{
+public:
+    int data;
+    node *next;
+    node(int value)//instilised the value with constructor
     {
-        if(hash[i]==0){
-            cout<<i<<endl;
-        }
+        data=value;
+        next=NULL;
     }
-}
-*/
-
-#include<iostream>
-using namespace std;
-#include<vector>
-int missing(vector<int>&a, int n){
-//summation of the first n number
-int s1 = (n *(n+1))/2;
-
-//summation of all array element
-int s2 =0;
-for(int i=0;i<n-1;i++){
-    s2+=a[i];
-}
-int miss=s1-s2;
-return miss;
-}
+};
 int main()
 {
-    vector<int>a={1,2,3,5};
-    int n=a.size()+1;//because 0 indexing size =4 now 4+1;
-    int ans=missing(a,n);
-    cout<<ans;
+
+    //node 1
+    node *head;
+    //head=NULL;
+    head=new node(5);
+    head->next=NULL;
+
+    //node 2
+    node *temp=new node(6);
+    temp->next=head;
+    head=temp;
+
+    //node 3
+    node *temp1=new node(7);
+    temp1->next=head;
+    head=temp1;
+//node 4
+    node *temp2=new node(8);
+    temp2->next=head;
+    head=temp2;
+
+
+    //printing the linkedlist
+    node *print;
+    print=head;
+    while(print){
+        cout<<print->data<<endl;
+        print=print->next;
+    }
+
+
+    //after printing the element the free the memory
+    //free the allocated memory
+    while(head){
+        node *temp=head;
+        head=head->next;
+        delete temp;
+    }
+
+    //output 8,7,6,5 because inert the element at start
+    //t-comp worst case = o(n)
+
 }
+

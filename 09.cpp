@@ -1,29 +1,54 @@
+//insert at any place
 #include<iostream>
-#include<vector>
 using namespace std;
-void moveZeroes(vector<int>& nums) {
-
-int n=nums.size();
-  int j = 0;
-        for(int i=0; i<nums.size(); ++i){
-            if(nums[i]!=0){
-                swap(nums[j], nums[i]);
-                //nums[j] = nums[j] + nums[i];
-                //nums[i] = nums[j] - nums[i];
-                //nums[j] = nums[j] - nums[i];
-                cout<<"i"<<i<<endl;
-                cout<<j<<endl;
-                ++j;
-            }
-        }
-   /* for(int i=0;i<n;i++){
-        cout<<nums[i]<<" ";
-    }
-    */
-
-}
-int main()
+class node{
+public:
+    int data;
+    node *next;
+};
+int  main()
 {
-vector<int>nums={1,2,3,0,0,0};
- moveZeroes(nums);
+    node *head,*temp;
+    head=NULL;
+    int arr[]={1,2,3,4,5};
+    for(int i=0;i<5;i++){
+        if(head==NULL){
+            head=new node;
+            head->data=arr[i];
+            head->next=NULL;
+            temp=head;
+        }
+        else{
+            node *newNode = new node;
+            newNode->data = arr[i];
+            newNode->next = NULL;
+            temp->next = newNode;
+            temp = newNode;
+        }
+    }
+        int x=3;
+        int value=30;
+        temp=head;
+        x--;
+
+        while(x--)
+        {
+            temp=temp->next;
+        }
+
+        //insert the element in middle
+        node *temp2=new node;
+        temp2->data=value;
+        temp2->next=temp->next;
+        temp->next=temp2;
+
+    //printing the data
+    node *print;
+    print=head;
+    for(int i=0;i<5;i++){
+        cout<<print->data<<" ";
+        print=print->next;
+    }
+
+
 }

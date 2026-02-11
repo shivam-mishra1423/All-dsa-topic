@@ -1,31 +1,35 @@
 #include<iostream>
 using namespace std;
+class node{
+public:
+    int data;
+    node *next;
+    node(int value){
+    data=value;
+    next=NULL;
+    }
+};
 int main()
 {
-    int arr[]={3,1,-2,-5,2,-4};
+    int arr[]={1,2,3,4,5};
+    node *head,*tail;
+    tail=head=NULL;
 
-    int n=6;
-    int pos[n/2];
-    int neg[n/2];
-
-    for(int i=0;i<n;i++){
-        if(arr[i]>0){
-                cout<<"enter in positive "<<arr[i]<<endl;
-            pos[i]=arr[i];
+    for(int i=0;i<5;i++){//linked list may be not exiest
+        if(head==NULL){
+            head=new node(arr[i]);
+            tail=head;
         }
         else{
-            cout<<"enter in negative "<<arr[i]<<endl;
-            neg[i]=arr[i];
+        //linked list may be exiest
+        tail->next=new node(arr[i]);
+        tail=tail->next;
         }
+        }
+
+    node *print=head;
+    for(int i=0;i<5;i++){
+        cout<<print->data<<" ";
+        print=print->next;
     }
-
-   for(int i=0;i<n/2;i++){
-    arr[2*i]=pos[i];
-    arr[2*i+1]=neg[i];
-   }
-
-   for(int i=0;i<n;i++){
-    cout<<arr[i]<<" ";
-   }
-
 }
